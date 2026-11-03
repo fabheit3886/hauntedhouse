@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Escape the Haunted House</title>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#150d1c;--panel:#22152b;--line:#4a3358;--bone:#efe6d2;--dim:#b8a9c4;--flame:#f2b134;--ok:#8fbf7a;--bad:#e0636c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{color-scheme:dark;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#3d2450 0,var(--bg) 62%) fixed;color:var(--bone);font:400 18px/1.55 Nunito,system-ui,sans-serif;min-height:100vh}
+main{max-width:640px;margin:0 auto;padding:12px 18px 40px}
+h1,h2{font-family:"Pirata One",Georgia,serif;font-weight:400;margin:0;line-height:1.05}
+h1{font-size:clamp(2.4rem,9vw,3.4rem);text-align:center;margin:4px 0 14px;text-shadow:0 0 22px rgba(242,177,52,.35)}
+h2{font-size:2rem;margin-bottom:8px}
+.hero{position:relative;max-width:440px;margin:0 auto;overflow:hidden}
+.hero svg{width:100%;display:block}
+.ghost{position:absolute;right:7%;top:34%;font-size:2rem;animation:float 4s ease-in-out infinite}
+.bat{position:absolute;left:-12%;top:8%;font-size:1.3rem;animation:fly 15s linear infinite}
+.bat.b2{top:22%;font-size:1rem;animation-duration:20s;animation-delay:7s}
+.w{fill:#33233f;transition:fill .7s,filter .7s}
+.w.lit{fill:#f2b134;filter:drop-shadow(0 0 7px rgba(242,177,52,.9))}
+.w.cur{animation:flick 1.8s ease-in-out infinite}
+@keyframes flick{0%,100%{fill:#5a3d1c}35%{fill:#9a6a24}60%{fill:#6b4a1f}}
+@keyframes float{50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes fly{to{transform:translate(560px,-16px)}}
+@keyframes rise{from{opacity:1;transform:translateY(0) rotate(0)}to{opacity:0;transform:translateY(-420px) rotate(40deg)}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pop{50%{transform:scale(1.35)}}
+.hud{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px}
+.hud[hidden]{display:none}
+.keys span{display:inline-block;font-size:1.4rem;margin-right:6px}
+.keys .off{opacity:.2;filter:grayscale(1)}
+.keys .new{animation:pop .5s}
+.time{font-weight:800;font-variant-numeric:tabular-nums}
+.candle{height:9px;background:var(--line);border-radius:6px;margin-bottom:16px;overflow:hidden}
+.candle i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#b3601b,var(--flame));transition:width 1s linear}
+.card{position:relative;background:linear-gradient(180deg,#2b1a37,var(--panel) 40%);border:1px solid var(--line);border-top:3px solid var(--flame);border-radius:16px;padding:24px 22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.45),0 -6px 26px rgba(242,177,52,.12)}
+.card.enter{animation:up .5s ease-out}
+.story{color:var(--dim);font-style:italic;margin:0 0 20px;padding-left:14px;border-left:3px solid var(--line)}
+.narr{font-size:1.15rem;color:var(--bone);border-left-color:var(--flame)}
+.badge{margin:0 0 4px;color:var(--flame);font-weight:800;font-size:.9rem}
+.item{margin:0 0 18px}
+.item label{display:block;margin-bottom:6px}
+.clock{display:block;width:96px;height:96px;margin:0 0 8px}
+input,select{width:100%;font:inherit;color:var(--bone);background:var(--bg);border:2px solid var(--line);border-radius:8px;padding:10px 12px}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--flame);outline-offset:2px}
+.ok{border-color:var(--ok)}.bad{border-color:var(--bad)}.shake{animation:shake .35s}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+button{font:800 1rem Nunito,system-ui,sans-serif;border-radius:8px;padding:11px 18px;cursor:pointer;border:2px solid var(--flame);background:var(--flame);color:#2a1700}
+button.ghostbtn{background:transparent;color:var(--flame)}
+button{transition:transform .15s,box-shadow .15s,background .15s}
+button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 16px rgba(242,177,52,.28)}
+button:active:not(:disabled){transform:none}
+button:disabled{opacity:.5;cursor:default}
+select{appearance:none;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23f2b134' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;padding-right:40px}
+option{background:#22152b}
+.fog{position:absolute;left:-20%;bottom:-4%;width:140%;height:34%;background:radial-gradient(ellipse at center,rgba(184,169,196,.3),transparent 70%);animation:drift 12s ease-in-out infinite alternate;pointer-events:none}
+.fog.f2{bottom:-10%;opacity:.7;animation-duration:17s;animation-direction:alternate-reverse}
+.st{animation:tw 3s ease-in-out infinite}.st:nth-child(2n){animation-delay:1.2s}.st:nth-child(3n){animation-delay:2s}
+@keyframes drift{to{transform:translateX(12%)}}
+@keyframes tw{50%{opacity:.15}}
+.msg{min-height:1.5em;margin:14px 0 0}
+.hint{color:var(--flame);margin:10px 0 0}
+.end{text-align:center;padding:8px 0}
+.end h2{font-size:2.6rem}
+.conf{position:absolute;bottom:0;font-size:1.6rem;animation:rise 3s ease-out forwards;pointer-events:none}
+footer{margin-top:22px;text-align:center;color:var(--dim);font-size:.9rem}
+footer .row{justify-content:center;margin-bottom:10px}
+footer button{padding:7px 14px;font-size:.9rem}
+dialog{background:var(--panel);color:var(--bone);border:1px solid var(--line);border-radius:14px;width:calc(100% - 32px);max-width:520px;max-height:85vh;overflow:auto;padding:22px}
+dialog::backdrop{background:rgba(8,3,12,.78)}
+dialog[open]{animation:up .3s ease-out}
+dialog h3{font:400 1.5rem "Pirata One",Georgia,serif;margin:18px 0 6px}
+dialog ul,dialog ol{padding-left:22px;margin:6px 0}
+dialog li{margin-bottom:4px}
+.names{list-style:none;padding:0}
+.scene{position:relative;aspect-ratio:16/8;border-radius:14px;overflow:hidden;margin:0 0 18px;border:1px solid var(--line);background:linear-gradient(var(--wall) 0 70%,var(--floor) 70%)}
+.doorway{position:absolute;right:5%;bottom:30%;width:15%;height:58%;background:#0b0610;border-radius:40% 40% 0 0/22% 22% 0 0;transition:background .8s}
+.scene.open .doorway{background:var(--flame)}
+.door{position:absolute;inset:0;background:#5a3a22;border-radius:inherit;transform-origin:left center;transition:transform 1s cubic-bezier(.3,.7,.3,1)}
+.door::after{content:"";position:absolute;right:12%;top:52%;width:6px;height:6px;border-radius:50%;background:#e8c27a}
+.scene.open .door{transform:perspective(420px) rotateY(-78deg)}
+.obj{position:absolute;bottom:26%;transform:translateX(-50%);font-size:clamp(1.9rem,8vw,2.7rem);line-height:1;padding:6px;background:none;border:0;border-radius:12px;color:inherit;cursor:pointer;filter:drop-shadow(0 4px 4px rgba(0,0,0,.55));animation:bob 3s ease-in-out infinite}
+.obj:hover:not(:disabled){transform:translateX(-50%);box-shadow:none;background:rgba(255,255,255,.08)}
+.obj.sel{background:rgba(242,177,52,.22);outline:2px solid var(--flame)}
+.obj.done{opacity:.45;animation:none}
+.obj.done::after{content:"✓";position:absolute;right:-4px;top:-4px;width:20px;height:20px;line-height:20px;border-radius:50%;background:var(--ok);color:#10200a;font:800 .8rem Nunito,sans-serif}
+@keyframes bob{50%{transform:translate(-50%,-5px)}}
+.qhead{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
+.qhead label{flex:1;margin:0}
+.spk{padding:6px 10px;flex:0 0 auto}
+.found{display:flex;align-items:center;gap:8px;margin:0 0 14px}
+.found[hidden]{display:none}
+.found small{color:var(--dim);margin-right:4px}
+.tile{width:34px;height:38px;display:grid;place-items:center;border:2px solid var(--line);border-radius:8px;font:400 1.4rem "Pirata One",Georgia,serif;color:var(--dim)}
+.tile.on{border-color:var(--flame);color:var(--flame);animation:pop .5s}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <div class="hero" aria-hidden="true">
+    <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#efe6d2"><circle class="st" cx="30" cy="24" r="1.3"/><circle class="st" cx="74" cy="46" r="1"/><circle class="st" cx="112" cy="20" r="1.4"/><circle class="st" cx="206" cy="14" r="1"/><circle class="st" cx="236" cy="58" r="1.2"/><circle class="st" cx="20" cy="70" r="1"/></g>
+      <circle cx="262" cy="34" r="26" fill="#f2b134" opacity=".12"/><circle cx="262" cy="34" r="20" fill="#efe6d2" opacity=".92"/><circle cx="270" cy="30" r="20" fill="#2a1736"/>
+      <polygon points="46,76 160,16 274,76" fill="#0b0610"/><rect x="60" y="74" width="200" height="86" fill="#0b0610"/><rect x="206" y="26" width="16" height="34" fill="#0b0610"/>
+      <rect class="w" x="146" y="112" width="28" height="48" rx="14"/>
+      <rect class="w" x="80" y="92" width="26" height="30" rx="3"/>
+      <rect class="w" x="214" y="92" width="26" height="30" rx="3"/>
+      <circle class="w" cx="160" cy="54" r="11"/>
+      <rect class="w" x="70" y="140" width="60" height="8" rx="2"/>
+      <rect class="w" x="190" y="140" width="60" height="8" rx="2"/>
+    </svg>
+    <i class="fog"></i><i class="fog f2"></i><span class="ghost">👻</span><span class="bat">🦇</span><span class="bat b2">🦇</span>
+  </div>
+  <h1>Escape the Haunted House</h1>
+  <div class="hud" id="hud" hidden><div class="keys" id="keys" aria-label="Rooms cleared"></div><div class="time" id="time"></div></div>
+  <div class="candle" id="candle" hidden aria-hidden="true"><i id="flame"></i></div>
+  <div class="found" id="codebar" hidden></div>
+  <section class="card" id="stage"></section>
+  <footer>
+    <div class="row"><button class="ghostbtn" id="bMan">How to play</button><button class="ghostbtn" id="bCred">Credits</button><button class="ghostbtn" id="bSnd">Sound: on</button></div>
+    English class with Margarete Trigueiro de Lima
+  </footer>
+</main>
+
+<dialog id="manual" aria-labelledby="mt">
+  <h2 id="mt">How to play</h2>
+  <p>You and your team are locked inside an escape room. Clear all 6 rooms before the candle burns out.</p>
+  <h3>Steps</h3>
+  <ol>
+    <li>Read the story of the room.</li>
+    <li>Click the objects in the room. Each object has a question.</li>
+    <li>Talk with your team and use English! Press 🔊 to listen to the question.</li>
+    <li>Press “Check”. Green means correct. Red means try again.</li>
+    <li>Solve all the objects to open the door. Each room gives you one secret letter.</li>
+    <li>Write the letters down. They are out of order! In the last room, put them in order to make the secret word.</li>
+  </ol>
+  <h3>Rules</h3>
+  <ul>
+    <li>You have 15 minutes. The timer stops while this window is open.</li>
+    <li>Stuck? Press “Get a hint”. Hints are counted at the end.</li>
+    <li>Capital letters do not matter. Write the full verb, for example: is cooking.</li>
+    <li>You cannot skip a room.</li>
+    <li>Use the Sound button in the footer to turn the sounds on or off.</li>
+  </ul>
+  <h3>The 6 rooms</h3>
+  <ul><li>The Hall: pronouns</li><li>The Library: adverbs of frequency</li><li>The Kitchen: present continuous</li><li>The Attic: prepositions of time (in, on, at)</li><li>The Cellar: the clock</li><li>The Crypt: final review and the secret word</li></ul>
+  <div class="row"><button data-close="manual">Got it</button></div>
+</dialog>
+
+<dialog id="credits" aria-labelledby="ct">
+  <h2 id="ct">Credits</h2>
+  <h3>Created by</h3>
+  <ul class="names">
+    <li>Fábio Heitor Bezerra Pires</li>
+    <li>Allef Braz da Silva Santos</li>
+    <li>Henzo Nunes Dias Soares</li>
+    <li>Kleiwan Paulo Justino Pinheiro Ludugero</li>
+    <li>Lucas Barbosa de Lima</li>
+    <li>Laerto Albuquerque de Farias</li>
+  </ul>
+  <h3>English teacher</h3>
+  <p>Margarete Trigueiro de Lima</p>
+  <div class="row"><button data-close="credits">Close</button></div>
+</dialog>
+
+<script>
+var TOTAL=15*60;
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function S(q,o,a){return{q:q,o:o,a:a}}
+function T(q,a){return{q:q,a:a}}
+function K(h,m,a,x,y){return{q:"What time is it?",c:[h,m],o:[a,x,y],a:a}}
+var IOA=["in","on","at"];
+var WORDS=[["GHOST","It lives in a haunted house."],["WITCH","She flies on a broom."],["SKULL","It is part of a skeleton."],["BROOM","A witch flies on it."],["MUMMY","It is wrapped in bandages."]];
+var ROOMS=[
+{name:"The Hall",story:"The front door slams shut. A voice whispers: “Choose the right pronoun and I will light the way.”",
+ wall:"#35224a",floor:"#1d1226",obj:["🖼️","🕯️","🪞","🪑"],
+ hint:"Subject pronoun comes before a verb. Object pronoun comes after a verb. A possessive adjective comes before a noun.",
+ bank:[S("Maria is a witch. ___ lives in the attic.",["She","Her","Hers"],"She"),
+  S("The ghost is behind you! Don’t look at ___.",["he","him","his"],"him"),
+  S("My brother and I are scared. ___ want to leave.",["We","Us","Our"],"We"),
+  S("This is not my hat. It is ___ hat. It belongs to you.",["you","your","yours"],"your"),
+  S("Look at those bats! ___ are flying around.",["They","Them","Their"],"They"),
+  S("Anna is my sister. I love ___.",["she","her","hers"],"her"),
+  S("Can you help ___, please? I am lost.",["I","me","my"],"me"),
+  S("The house is old. ___ windows are broken.",["Its","It","It’s"],"Its")]},
+{name:"The Library",story:"A dusty book falls open. The chart of frequency has missing words. Use the percentages.",
+ wall:"#2b2a3f",floor:"#1b1a2b",obj:["📖","📜","🦉","🕸️"],
+ hint:"always 100%, usually 90%, sometimes 50%, rarely 10%, never 0%.",
+ bank:[S("100%: Vampires ___ sleep in the day.",["always","never","sometimes"],"always"),
+  S("0%: Ghosts ___ need to eat.",["always","never","usually"],"never"),
+  S("50%: I ___ wear a costume to school.",["sometimes","always","never"],"sometimes"),
+  S("90%: We ___ eat pumpkin pie in October.",["rarely","usually","never"],"usually"),
+  S("0%: Mummies ___ eat pizza.",["never","always","usually"],"never"),
+  S("100%: The sun ___ rises in the east.",["always","never","rarely"],"always"),
+  S("10%: My dad ___ watches horror movies.",["rarely","always","usually"],"rarely"),
+  S("90%: The witch ___ flies at midnight.",["usually","never","sometimes"],"usually")]},
+{name:"The Kitchen",story:"A cauldron bubbles in the corner. Write the verb in the present continuous to cool it down.",
+ wall:"#3a2230",floor:"#241520",obj:["🍲","🧪","🔪","🥣"],
+ hint:"Subject + am / is / are + verb-ing. Look at the double letter in running.",
+ bank:[T("The witch ___ (cook) a potion.",["is cooking","'s cooking"]),
+  T("The bats ___ (fly) around the kitchen.",["are flying","'re flying"]),
+  T("I ___ (not / sleep) now.",["am not sleeping","'m not sleeping"]),
+  T("They ___ (run) to the door.",["are running","'re running"]),
+  T("The ghost ___ (cry) in the corner.",["is crying","'s crying"]),
+  T("We ___ (make) a spooky soup.",["are making","'re making"]),
+  T("I ___ (not / eat) the eyeballs!",["am not eating","'m not eating"]),
+  T("The cat ___ (jump) on the table.",["is jumping","'s jumping"])]},
+{name:"The Attic",story:"Old calendars cover the walls. Choose in, on or at to climb the stairs.",
+ wall:"#2e2a22",floor:"#1f1c15",obj:["📦","🗓️","🧸","🔦"],
+ hint:"in: months, seasons, years. on: days and dates. at: clock times and night.",
+ bank:[S("Halloween is ___ October 31st.",IOA,"on"),S("The party starts ___ 8 o’clock.",IOA,"at"),
+  S("Pumpkins grow ___ the summer.",IOA,"in"),S("Owls hunt ___ night.",IOA,"at"),
+  S("We watch a scary movie ___ Friday.",IOA,"on"),S("My birthday is ___ March.",IOA,"in"),
+  S("The ghost appears ___ midnight.",IOA,"at"),S("We go trick-or-treating ___ the evening.",IOA,"in")]},
+{name:"The Cellar",story:"The last door has a lock shaped like a clock. Read each time and choose the right sentence.",
+ wall:"#1f2a33",floor:"#141c22",obj:["⏰","🕰️","⌚","⌛"],
+ hint:"o’clock = :00. quarter past = :15. half past = :30. quarter to = :45.",
+ bank:[K(3,0,"It’s three o’clock.","It’s half past three.","It’s a quarter past three."),
+  K(6,30,"It’s half past six.","It’s six o’clock.","It’s half past five."),
+  K(9,15,"It’s a quarter past nine.","It’s a quarter to nine.","It’s nine fifty."),
+  K(11,45,"It’s a quarter to twelve.","It’s a quarter past eleven.","It’s a quarter to eleven."),
+  K(1,15,"It’s a quarter past one.","It’s a quarter to one.","It’s one o’clock."),
+  K(4,30,"It’s half past four.","It’s half past five.","It’s four o’clock."),
+  K(8,45,"It’s a quarter to nine.","It’s a quarter past eight.","It’s half past eight."),
+  K(12,30,"It’s half past twelve.","It’s twelve o’clock.","It’s a quarter past twelve.")]},
+{name:"The Crypt",story:"The exit is behind a stone door. Solve five questions, one from each room. Then use your secret letters to open the lock.",
+ wall:"#222228",floor:"#141417",obj:["⚰️","🪦","💀","🦴","🕸️"],
+ hint:"Review all the topics. For the lock, put your 5 secret letters in the right order.",bank:null}
+];
+var room=0,left=TOTAL,hints=0,playing=false,paused=false,Q=[],found=[],LET=[],CODE="",CLUE="",muted=false,AC=null;
+function sfx(t){if(muted)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();var n=AC.currentTime;
+  function tone(f,d,ty,at,v,f2){var o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.setValueAtTime(f,n+at);if(f2)o.frequency.exponentialRampToValueAtTime(f2,n+at+d);
+    g.gain.setValueAtTime(.0001,n+at);g.gain.exponentialRampToValueAtTime(v,n+at+.02);g.gain.exponentialRampToValueAtTime(.0001,n+at+d);o.connect(g);g.connect(AC.destination);o.start(n+at);o.stop(n+at+d+.05)}
+  if(t==="tick")tone(520,.08,"square",0,.04);
+  if(t==="ok"){tone(660,.12,"sine",0,.12);tone(880,.2,"sine",.1,.12)}
+  if(t==="bad")tone(160,.25,"sawtooth",0,.08,100);
+  if(t==="door"){tone(70,1,"sawtooth",0,.07,150);tone(73,1,"square",.03,.025,160)}
+  if(t==="win")[523,659,784,1047].forEach(function(f,i){tone(f,.25,"triangle",i*.14,.12)})}catch(e){}}
+function speak(x){if(!window.speechSynthesis)return;var u=new SpeechSynthesisUtterance(x.replace(/___/g,"blank"));u.lang="en-US";u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}
+function tiles(){var f=document.getElementById("codebar");f.hidden=false;f.textContent="";f.appendChild(el("small","","Secret letters"));
+  for(var i=0;i<5;i++)f.appendChild(el("span","tile"+(found[i]?" on":""),found[i]||"?"))}
+var stage=document.getElementById("stage"),hud=document.getElementById("hud"),candle=document.getElementById("candle");
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e}
+function fmt(s){var m=Math.floor(s/60),r=s%60;return m+":"+(r<10?"0":"")+r}
+function norm(s){return s.toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g," ").trim()}
+function lights(){var w=document.querySelectorAll(".w");
+  for(var i=0;i<w.length;i++){w[i].classList.toggle("lit",i<room);w[i].classList.toggle("cur",playing&&i===room)}}
+function keys(fresh){var k=document.getElementById("keys");k.textContent="";
+  for(var i=0;i<ROOMS.length;i++){var s=el("span",i<room?"":"off","🗝️");if(fresh&&i===room-1)s.classList.add("new");k.appendChild(s)}}
+function paint(){document.getElementById("flame").style.width=Math.max(0,left/TOTAL*100)+"%";
+  document.getElementById("time").textContent=fmt(Math.max(0,left))}
+function tick(){if(!playing||paused)return;left--;paint();if(left<=0){playing=false;lose()}}
+function enter(){stage.classList.remove("enter");void stage.offsetWidth;stage.classList.add("enter")}
+function clockSvg(h,m){var a=[(h%12)*30+m/2,m*6],s='<svg class="clock" viewBox="0 0 100 100" role="img" aria-label="Analog clock"><circle cx="50" cy="50" r="46" fill="#efe6d2" stroke="#f2b134" stroke-width="4"/>';
+  for(var i=0;i<12;i++){var r=i*Math.PI/6;s+='<line x1="'+(50+38*Math.sin(r))+'" y1="'+(50-38*Math.cos(r))+'" x2="'+(50+43*Math.sin(r))+'" y2="'+(50-43*Math.cos(r))+'" stroke="#2a1736" stroke-width="2"/>'}
+  [[a[0],24,4],[a[1],36,2.5]].forEach(function(p){var r=p[0]*Math.PI/180;s+='<line x1="50" y1="50" x2="'+(50+p[1]*Math.sin(r))+'" y2="'+(50-p[1]*Math.cos(r))+'" stroke="#2a1736" stroke-width="'+p[2]+'" stroke-linecap="round"/>'});
+  return s+'<circle cx="50" cy="50" r="3" fill="#b3361f"/></svg>'}
+var STORY=[["Halloween night","You and your classmates join a famous escape room: the Haunted House of Mr. Boo. “It’s only a game,” says the guide with a smile."],
+["The lights go out","Suddenly the door slams shut. A cold voice says: “Welcome. Only the best English team can leave this place.”"],
+["Your mission","You are trapped. Find 5 secret letters, solve 6 rooms and open the last door in 15 minutes. Work together, speak English and good luck!"]];
+function intro(beat){beat=beat||0;document.querySelector(".hero").hidden=false;document.getElementById("codebar").hidden=true;playing=false;room=0;hud.hidden=true;candle.hidden=true;lights();stage.textContent="";enter();
+  var S=STORY[beat],last=beat===STORY.length-1;
+  stage.appendChild(el("h2","",S[0]));stage.appendChild(el("p","story narr",S[1]));
+  var row=el("div","row"),b=el("button","",last?"Start the game":"Continue");
+  b.onclick=function(){last?start():intro(beat+1)};row.appendChild(b);
+  if(last){var m=el("button","ghostbtn","How to play");m.onclick=function(){openD("manual")};row.appendChild(m)}
+  stage.appendChild(row)}
+function start(){var w=WORDS[Math.floor(Math.random()*WORDS.length)];CODE=w[0];CLUE=w[1];
+  do{LET=shuf(CODE.split(""))}while(LET.join("")===CODE);
+  Q=[];for(var i=0;i<5;i++)Q[i]=shuf(ROOMS[i].bank).slice(0,4);
+  Q[5]=[0,1,2,3,4].map(function(i){var r=ROOMS[i].bank.filter(function(x){return Q[i].indexOf(x)<0});return r[Math.floor(Math.random()*r.length)]});
+  found=[];room=0;left=TOTAL;hints=0;playing=true;hud.hidden=false;candle.hidden=false;paint();show()}
+function show(){keys(room>0);paint();lights();tiles();stage.textContent="";enter();
+  document.querySelector(".hero").hidden=room<ROOMS.length;
+  if(room>=ROOMS.length){playing=false;return win()}
+  var R=ROOMS[room],qs=Q[room],done=[],last=room===ROOMS.length-1;
+  stage.appendChild(el("p","badge","Room "+(room+1)+" of "+ROOMS.length));
+  stage.appendChild(el("h2","",R.name));stage.appendChild(el("p","story",R.story));
+  var sc=el("div","scene");sc.style.setProperty("--wall",R.wall);sc.style.setProperty("--floor",R.floor);
+  sc.innerHTML='<div class="doorway"><div class="door"></div></div>';
+  var objs=qs.map(function(q,i){var b=el("button","obj",R.obj[i]);b.style.left=(10+i*58/(qs.length-1))+"%";b.style.animationDelay=(i*.6)+"s";
+    b.setAttribute("aria-label","Object "+(i+1)+" of "+qs.length);b.onclick=function(){pick(i)};sc.appendChild(b);return b});
+  var qa=el("div","qa"),row=el("div","row"),msg=el("p","msg"),hp=el("p","hint"),hb=el("button","ghostbtn","Get a hint");
+  msg.setAttribute("aria-live","polite");msg.textContent="Click an object to find a question.";
+  hb.onclick=function(){hints++;hp.textContent="Hint: "+R.hint};row.appendChild(hb);
+  [sc,qa,row,msg,hp].forEach(function(x){stage.appendChild(x)});
+  function doorOpen(letter){sc.classList.add("open");sfx("door");
+    if(letter){found[room]=LET[room];tiles();msg.textContent="Click! The door creaks open. Secret letter: "+LET[room]}
+    var nx=el("button","",last?"Escape!":"Next room");nx.onclick=function(){room++;show()};row.appendChild(nx);nx.focus()}
+  function all(){if(!last)return doorOpen(true);
+    qa.textContent="";msg.textContent="The stone door has a 5-letter lock. Put your secret letters in order. Clue: "+CLUE;
+    var d=el("div","item"),cf=el("input"),cb=el("button","","Open the door");cf.maxLength=5;cf.autocomplete="off";cf.setAttribute("aria-label","Secret word");
+    function cc(){if(norm(cf.value)===CODE.toLowerCase()){qa.textContent="";doorOpen(false);msg.textContent="The stone door opens. You are free!"}
+      else{cf.classList.add("bad");cf.classList.remove("shake");void cf.offsetWidth;cf.classList.add("shake");sfx("bad");msg.textContent="Wrong word. Rearrange the letters and try again."}}
+    cb.onclick=cc;cf.onkeydown=function(e){if(e.key==="Enter")cc()};d.appendChild(cf);qa.appendChild(d);qa.appendChild(cb);cf.focus()}
+  function pick(i){objs.forEach(function(b,k){b.classList.toggle("sel",k===i)});sfx("tick");qa.textContent="";
+    var it=qs[i],f;
+    if(done[i]){msg.textContent="Already solved. Pick another object.";return}
+    var d=el("div","item"),head=el("div","qhead"),lab=el("label","",it.q);lab.htmlFor="qf";
+    if(it.c){var w=el("div");w.innerHTML=clockSvg(it.c[0],it.c[1]);d.appendChild(w.firstChild)}
+    head.appendChild(lab);
+    if(window.speechSynthesis){var sp=el("button","ghostbtn spk","🔊");sp.setAttribute("aria-label","Listen to the question");sp.onclick=function(){speak(it.q)};head.appendChild(sp)}
+    d.appendChild(head);
+    if(it.o){f=el("select");f.appendChild(new Option("Choose…",""));shuf(it.o).forEach(function(o){f.appendChild(new Option(o,o))})}
+    else{f=el("input");f.type="text";f.autocomplete="off";f.autocapitalize="off";f.spellcheck=false}
+    f.id="qf";d.appendChild(f);qa.appendChild(d);
+    var ck=el("button","","Check");qa.appendChild(ck);
+    function check(){var acc=[].concat(it.a).map(function(x){return it.o?x:norm(x)}),ok=acc.indexOf(it.o?f.value:norm(f.value))>-1;
+      f.classList.toggle("ok",ok);f.classList.toggle("bad",!ok);
+      if(!ok){f.classList.remove("shake");void f.offsetWidth;f.classList.add("shake");sfx("bad");msg.textContent="Not yet. Try again!";return}
+      sfx("ok");done[i]=true;objs[i].classList.add("done");objs[i].classList.remove("sel");qa.textContent="";
+      var n=done.filter(Boolean).length;
+      if(n<qs.length){msg.textContent="Correct! "+n+" of "+qs.length+" solved. Pick another object.";return}
+      all()}
+    ck.onclick=check;f.onkeydown=function(e){if(e.key==="Enter")check()};f.focus()}
+}
+function win(){sfx("win");keys(true);lights();document.getElementById("time").textContent="";
+  var d=el("div","end");d.appendChild(el("h2","","You escaped!"));
+  d.appendChild(el("p","","Time used: "+fmt(TOTAL-left)+". Hints used: "+hints+"."));
+  var b=el("button","","Play again");b.onclick=start;d.appendChild(b);stage.appendChild(d);
+  for(var i=0;i<16;i++){var c=el("span","conf","🎃");c.style.left=(Math.random()*92)+"%";c.style.animationDelay=(Math.random()*1.2)+"s";stage.appendChild(c)}}
+function lose(){document.querySelector(".hero").hidden=false;stage.textContent="";enter();lights();var d=el("div","end");
+  d.appendChild(el("h2","","The candle went out."));
+  d.appendChild(el("p","","You stayed in the dark… this time. You cleared "+room+" of "+ROOMS.length+" rooms."));
+  var b=el("button","","Try again");b.onclick=start;d.appendChild(b);stage.appendChild(d)}
+function openD(id){paused=true;document.getElementById(id).showModal()}
+["manual","credits"].forEach(function(id){var d=document.getElementById(id);
+  d.addEventListener("close",function(){paused=false});
+  d.querySelector("[data-close]").onclick=function(){d.close()}});
+document.getElementById("bMan").onclick=function(){openD("manual")};
+document.getElementById("bCred").onclick=function(){openD("credits")};
+var bs=document.getElementById("bSnd");bs.onclick=function(){muted=!muted;bs.textContent="Sound: "+(muted?"off":"on")};
+setInterval(tick,1000);intro();
+</script>
+</body>
+</html>
