@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Escape the Haunted House</title>
+<title>Fuja da Casa Assombrada</title>
 <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#150d1c;--panel:#22152b;--line:#4a3358;--bone:#efe6d2;--dim:#b8a9c4;--flame:#f2b134;--ok:#8fbf7a;--bad:#e0636c;
@@ -117,45 +117,45 @@ dialog li{margin-bottom:4px}
     </svg>
     <i class="fog"></i><i class="fog f2"></i><span class="ghost">👻</span><span class="bat">🦇</span><span class="bat b2">🦇</span>
   </div>
-  <h1>Escape the Haunted House</h1>
-  <div class="hud" id="hud" hidden><div class="keys" id="keys" aria-label="Rooms cleared"></div><div class="time" id="time"></div></div>
+  <h1>Fuja da Casa Assombrada</h1>
+  <div class="hud" id="hud" hidden><div class="keys" id="keys" aria-label="Salas concluídas"></div><div class="time" id="time"></div></div>
   <div class="candle" id="candle" hidden aria-hidden="true"><i id="flame"></i></div>
   <div class="found" id="codebar" hidden></div>
   <section class="card" id="stage"></section>
   <footer>
-    <div class="row"><button class="ghostbtn" id="bMan">How to play</button><button class="ghostbtn" id="bCred">Credits</button><button class="ghostbtn" id="bSnd">Sound: on</button></div>
-    English class with Margarete Trigueiro de Lima
+    <div class="row"><button class="ghostbtn" id="bMan">Como jogar</button><button class="ghostbtn" id="bCred">Créditos</button><button class="ghostbtn" id="bSnd">Som: ligado</button></div>
+    Aula de Geografia com a professora Maria Jose Marjorie Ramos da Silva
   </footer>
 </main>
 
 <dialog id="manual" aria-labelledby="mt">
-  <h2 id="mt">How to play</h2>
-  <p>You and your team are locked inside an escape room. Clear all 6 rooms before the candle burns out.</p>
-  <h3>Steps</h3>
+  <h2 id="mt">Como jogar</h2>
+  <p>Você e sua equipe estão presos em um escape room. Vençam as 6 salas antes que a vela se apague.</p>
+  <h3>Passo a passo</h3>
   <ol>
-    <li>Read the story of the room.</li>
-    <li>Click the objects in the room. Each object has a question.</li>
-    <li>Talk with your team and use English! Press 🔊 to listen to the question.</li>
-    <li>Press “Check”. Green means correct. Red means try again.</li>
-    <li>Solve all the objects to open the door. Each room gives you one secret letter.</li>
-    <li>Write the letters down. They are out of order! In the last room, put them in order to make the secret word.</li>
+    <li>Leia a história da sala.</li>
+    <li>Clique nos objetos da sala. Cada objeto tem uma pergunta.</li>
+    <li>Conversem em equipe. Aperte 🔊 para ouvir a pergunta.</li>
+    <li>Escolha a resposta e aperte “Verificar”. Verde é certo, vermelho é errado.</li>
+    <li>Resolva todos os objetos para abrir a porta. Cada sala dá uma letra secreta.</li>
+    <li>Anotem as letras. Elas estão fora de ordem! Na última sala, coloquem as letras na ordem certa para formar a palavra secreta.</li>
   </ol>
-  <h3>Rules</h3>
+  <h3>Regras</h3>
   <ul>
-    <li>You have 15 minutes. The timer stops while this window is open.</li>
-    <li>Stuck? Press “Get a hint”. Hints are counted at the end.</li>
-    <li>Capital letters do not matter. Write the full verb, for example: is cooking.</li>
-    <li>You cannot skip a room.</li>
-    <li>Use the Sound button in the footer to turn the sounds on or off.</li>
+    <li>Vocês têm 15 minutos. O tempo para enquanto esta janela está aberta.</li>
+    <li>Travou? Aperte “Pedir dica”. As dicas são contadas no final.</li>
+    <li>Letras maiúsculas ou minúsculas não fazem diferença.</li>
+    <li>Não dá para pular uma sala.</li>
+    <li>Use o botão de som no rodapé para ligar ou desligar os sons.</li>
   </ul>
-  <h3>The 6 rooms</h3>
-  <ul><li>The Hall: pronouns</li><li>The Library: adverbs of frequency</li><li>The Kitchen: present continuous</li><li>The Attic: prepositions of time (in, on, at)</li><li>The Cellar: the clock</li><li>The Crypt: final review and the secret word</li></ul>
-  <div class="row"><button data-close="manual">Got it</button></div>
+  <h3>As 6 salas</h3>
+  <ul><li>O Celeiro: estrutura fundiária e o campo globalizado</li><li>O Silo: modernização, produção agropecuária e mercado mundial</li><li>A Sede da Fazenda: trabalho, movimentos sociais e globalização</li><li>A Fábrica Abandonada: revoluções industriais, modelos de produção e multinacionais</li><li>A Cidade Fantasma: campo-cidade, urbanização e as globalizações de Milton Santos</li><li>A Cripta: revisão final e a palavra secreta</li></ul>
+  <div class="row"><button data-close="manual">Entendi</button></div>
 </dialog>
 
 <dialog id="credits" aria-labelledby="ct">
-  <h2 id="ct">Credits</h2>
-  <h3>Created by</h3>
+  <h2 id="ct">Créditos</h2>
+  <h3>Criado por</h3>
   <ul class="names">
     <li>Fábio Heitor Bezerra Pires</li>
     <li>Allef Braz da Silva Santos</li>
@@ -164,74 +164,75 @@ dialog li{margin-bottom:4px}
     <li>Lucas Barbosa de Lima</li>
     <li>Laerto Albuquerque de Farias</li>
   </ul>
-  <h3>English teacher</h3>
-  <p>Margarete Trigueiro de Lima</p>
-  <div class="row"><button data-close="credits">Close</button></div>
+  <h3>Professora</h3>
+  <p>Maria Jose Marjorie Ramos da Silva</p>
+  <div class="row"><button data-close="credits">Fechar</button></div>
 </dialog>
 
 <script>
 var TOTAL=15*60;
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
-function S(q,o,a){return{q:q,o:o,a:a}}
-function T(q,a){return{q:q,a:a}}
-function K(h,m,a,x,y){return{q:"What time is it?",c:[h,m],o:[a,x,y],a:a}}
-var IOA=["in","on","at"];
-var WORDS=[["GHOST","It lives in a haunted house."],["WITCH","She flies on a broom."],["SKULL","It is part of a skeleton."],["BROOM","A witch flies on it."],["MUMMY","It is wrapped in bandages."]];
+function S(q,o,a,m){return{q:q,o:o,a:a,must:m}}
+var WORDS=[["BRUXA","Ela voa de vassoura."],["ZUMBI","É um morto-vivo."],["TUMBA","É onde ficam enterrados os mortos."],["MAGIA","Os feiticeiros usam para fazer feitiços."],["CORVO","É uma ave preta e assustadora."]];
 var ROOMS=[
-{name:"The Hall",story:"The front door slams shut. A voice whispers: “Choose the right pronoun and I will light the way.”",
- wall:"#35224a",floor:"#1d1226",obj:["🖼️","🕯️","🪞","🪑"],
- hint:"Subject pronoun comes before a verb. Object pronoun comes after a verb. A possessive adjective comes before a noun.",
- bank:[S("Maria is a witch. ___ lives in the attic.",["She","Her","Hers"],"She"),
-  S("The ghost is behind you! Don’t look at ___.",["he","him","his"],"him"),
-  S("My brother and I are scared. ___ want to leave.",["We","Us","Our"],"We"),
-  S("This is not my hat. It is ___ hat. It belongs to you.",["you","your","yours"],"your"),
-  S("Look at those bats! ___ are flying around.",["They","Them","Their"],"They"),
-  S("Anna is my sister. I love ___.",["she","her","hers"],"her"),
-  S("Can you help ___, please? I am lost.",["I","me","my"],"me"),
-  S("The house is old. ___ windows are broken.",["Its","It","It’s"],"Its")]},
-{name:"The Library",story:"A dusty book falls open. The chart of frequency has missing words. Use the percentages.",
- wall:"#2b2a3f",floor:"#1b1a2b",obj:["📖","📜","🦉","🕸️"],
- hint:"always 100%, usually 90%, sometimes 50%, rarely 10%, never 0%.",
- bank:[S("100%: Vampires ___ sleep in the day.",["always","never","sometimes"],"always"),
-  S("0%: Ghosts ___ need to eat.",["always","never","usually"],"never"),
-  S("50%: I ___ wear a costume to school.",["sometimes","always","never"],"sometimes"),
-  S("90%: We ___ eat pumpkin pie in October.",["rarely","usually","never"],"usually"),
-  S("0%: Mummies ___ eat pizza.",["never","always","usually"],"never"),
-  S("100%: The sun ___ rises in the east.",["always","never","rarely"],"always"),
-  S("10%: My dad ___ watches horror movies.",["rarely","always","usually"],"rarely"),
-  S("90%: The witch ___ flies at midnight.",["usually","never","sometimes"],"usually")]},
-{name:"The Kitchen",story:"A cauldron bubbles in the corner. Write the verb in the present continuous to cool it down.",
- wall:"#3a2230",floor:"#241520",obj:["🍲","🧪","🔪","🥣"],
- hint:"Subject + am / is / are + verb-ing. Look at the double letter in running.",
- bank:[T("The witch ___ (cook) a potion.",["is cooking","'s cooking"]),
-  T("The bats ___ (fly) around the kitchen.",["are flying","'re flying"]),
-  T("I ___ (not / sleep) now.",["am not sleeping","'m not sleeping"]),
-  T("They ___ (run) to the door.",["are running","'re running"]),
-  T("The ghost ___ (cry) in the corner.",["is crying","'s crying"]),
-  T("We ___ (make) a spooky soup.",["are making","'re making"]),
-  T("I ___ (not / eat) the eyeballs!",["am not eating","'m not eating"]),
-  T("The cat ___ (jump) on the table.",["is jumping","'s jumping"])]},
-{name:"The Attic",story:"Old calendars cover the walls. Choose in, on or at to climb the stairs.",
- wall:"#2e2a22",floor:"#1f1c15",obj:["📦","🗓️","🧸","🔦"],
- hint:"in: months, seasons, years. on: days and dates. at: clock times and night.",
- bank:[S("Halloween is ___ October 31st.",IOA,"on"),S("The party starts ___ 8 o’clock.",IOA,"at"),
-  S("Pumpkins grow ___ the summer.",IOA,"in"),S("Owls hunt ___ night.",IOA,"at"),
-  S("We watch a scary movie ___ Friday.",IOA,"on"),S("My birthday is ___ March.",IOA,"in"),
-  S("The ghost appears ___ midnight.",IOA,"at"),S("We go trick-or-treating ___ the evening.",IOA,"in")]},
-{name:"The Cellar",story:"The last door has a lock shaped like a clock. Read each time and choose the right sentence.",
- wall:"#1f2a33",floor:"#141c22",obj:["⏰","🕰️","⌚","⌛"],
- hint:"o’clock = :00. quarter past = :15. half past = :30. quarter to = :45.",
- bank:[K(3,0,"It’s three o’clock.","It’s half past three.","It’s a quarter past three."),
-  K(6,30,"It’s half past six.","It’s six o’clock.","It’s half past five."),
-  K(9,15,"It’s a quarter past nine.","It’s a quarter to nine.","It’s nine fifty."),
-  K(11,45,"It’s a quarter to twelve.","It’s a quarter past eleven.","It’s a quarter to eleven."),
-  K(1,15,"It’s a quarter past one.","It’s a quarter to one.","It’s one o’clock."),
-  K(4,30,"It’s half past four.","It’s half past five.","It’s four o’clock."),
-  K(8,45,"It’s a quarter to nine.","It’s a quarter past eight.","It’s half past eight."),
-  K(12,30,"It’s half past twelve.","It’s twelve o’clock.","It’s a quarter past twelve.")]},
-{name:"The Crypt",story:"The exit is behind a stone door. Solve five questions, one from each room. Then use your secret letters to open the lock.",
+{name:"O Celeiro",story:"A porta bate atrás de você. Um celeiro escuro surge, cheio de objetos antigos. Responda sobre a terra para seguir em frente.",
+ wall:"#35224a",floor:"#1d1226",obj:["🌾","🐄","🚜","🐓"],
+ hint:"Latifúndio é terra grande. Minifúndio é terra pequena. A reforma agrária distribui melhor as terras.",
+ bank:[S("Como se chama a forma como as terras estão distribuídas entre os donos?",["Estrutura fundiária","Estrutura industrial","Estrutura urbana"],"Estrutura fundiária"),
+  S("Uma propriedade muito grande, muitas vezes pouco usada, é um:",["Minifúndio","Latifúndio","Condomínio"],"Latifúndio"),
+  S("Uma propriedade muito pequena, que mal sustenta a família, é um:",["Minifúndio","Latifúndio","Shopping"],"Minifúndio"),
+  S("Com a globalização, grandes fazendas passaram a produzir para:",["O mercado mundial","Apenas o bairro","Somente a própria família"],"O mercado mundial"),
+  S("A reforma agrária busca:",["Distribuir melhor as terras","Construir mais fábricas","Aumentar as cidades"],"Distribuir melhor as terras"),
+  S("Produtos agrícolas vendidos no mundo todo, como soja e café, são chamados de:",["Commodities","Souvenirs","Antiguidades"],"Commodities"),
+  S("Fazendas que vendem para vários países fazem parte da:",["Economia globalizada","Economia isolada","Economia medieval"],"Economia globalizada"),
+  S("A globalização é o processo de:",["Integração econômica, cultural e política entre os países","Isolamento de cada país","Fim das fronteiras de terras"],"Integração econômica, cultural e política entre os países")]},
+{name:"O Silo",story:"No silo, o milho balança sozinho. Descubra como o campo mudou com a tecnologia.",
+ wall:"#2b2a3f",floor:"#1b1a2b",obj:["🌽","🐖","🧺","🌱"],
+ hint:"Pense em tecnologia no campo, em plantações e na criação de animais.",
+ bank:[S("Usar máquinas, adubos e tecnologia no campo é a:",["Modernização da agricultura","Industrialização das cidades","Migração urbana"],"Modernização da agricultura"),
+  S("O agronegócio brasileiro vende produtos para:",["Vários países do mundo","Só um bairro","Nenhum país"],"Vários países do mundo"),
+  S("A internet e a tecnologia ajudam o campo a:",["Vender e se informar mais rápido","Parar de produzir","Voltar ao passado"],"Vender e se informar mais rápido"),
+  S("Uma plantação grande com um único produto é a:",["Monocultura","Policultura","Horta caseira"],"Monocultura"),
+  S("A pecuária é a atividade de:",["Criar animais","Plantar árvores","Extrair minérios"],"Criar animais"),
+  S("Qual destes produtos o Brasil mais exporta?",["Soja","Gelo","Pinguins"],"Soja"),
+  S("Uma consequência da modernização no campo é:",["Menos pessoas trabalhando no campo","Mais pessoas trabalhando no campo","Nenhuma mudança"],"Menos pessoas trabalhando no campo"),
+  S("O preço da soja muda conforme:",["A procura do mundo todo","A cor do trator","O nome da fazenda"],"A procura do mundo todo")]},
+{name:"A Sede da Fazenda",story:"Na sede da fazenda, papéis antigos contam a história de quem trabalha e luta pela terra.",
+ wall:"#3a2230",floor:"#241520",obj:["📜","🕯️","🪑","🔑"],
+ hint:"Pense em quem trabalha na terra, nos movimentos que lutam por direitos e nos problemas do campo.",
+ bank:[S("Quem trabalha na terra e recebe salário do fazendeiro é o:",["Trabalhador assalariado","Dono da fazenda","Prefeito"],"Trabalhador assalariado"),
+  S("Com a globalização, muitas empresas procuram:",["Mão de obra mais barata em outros países","Fechar todas as fábricas","Trabalhadores sem salário"],"Mão de obra mais barata em outros países"),
+  S("O MST é um movimento que luta por:",["Terra e reforma agrária","Aumentar o preço dos carros","Fechar as fazendas"],"Terra e reforma agrária"),
+  S("A concorrência do mercado mundial pode prejudicar:",["Pequenos agricultores","Somente as grandes empresas","Ninguém"],"Pequenos agricultores"),
+  S("Os conflitos no campo acontecem muitas vezes por causa de:",["Disputa por terras","Falta de internet","Excesso de chuva"],"Disputa por terras"),
+  S("Os movimentos sociais do campo usam a internet para:",["Divulgar suas lutas para o mundo","Esconder suas lutas","Fechar as estradas do mundo"],"Divulgar suas lutas para o mundo"),
+  S("Quando famílias saem do campo para a cidade, acontece o:",["Êxodo rural","Êxodo urbano","Turismo rural"],"Êxodo rural"),
+  S("Derrubar florestas para produzir soja e carne vendidas ao mundo é um problema:",["Ambiental ligado à globalização","Que só existe em fábricas","Que não existe"],"Ambiental ligado à globalização")]},
+{name:"A Fábrica Abandonada",story:"Máquinas velhas rangem numa fábrica abandonada. Responda sobre a indústria para ligar a energia.",
+ wall:"#1f2a33",floor:"#141c22",obj:["🏭","⚙️","🔧","🧰"],
+ hint:"A máquina a vapor, a eletricidade e a tecnologia marcam cada revolução. Ford criou a linha de montagem.",
+ bank:[S("A Primeira Revolução Industrial começou em qual país?",["Inglaterra","Brasil","Japão"],"Inglaterra"),
+  S("Qual invenção marcou a Primeira Revolução Industrial?",["Máquina a vapor","Computador","Internet"],"Máquina a vapor"),
+  S("Empresas que atuam em vários países são chamadas de:",["Multinacionais","Familiares","Artesanais"],"Multinacionais"),
+  S("A tecnologia da Terceira Revolução Industrial ajudou a globalização porque:",["Conectou o mundo em tempo real","Fechou as fronteiras","Acabou com o comércio"],"Conectou o mundo em tempo real"),
+  S("O modelo de linha de montagem, criado por Henry Ford, é o:",["Fordismo","Toyotismo","Feudalismo"],"Fordismo"),
+  S("O toyotismo nasceu em qual país?",["Japão","Canadá","Chile"],"Japão"),
+  S("Uma roupa pode ter peças feitas em vários países. Isso é a:",["Divisão internacional da produção","Produção de subsistência","Reforma agrária"],"Divisão internacional da produção"),
+  S("Empresas que mudam suas fábricas para países com salários baixos praticam a:",["Deslocalização industrial","Reforma agrária","Agricultura familiar"],"Deslocalização industrial")]},
+{name:"A Cidade Fantasma",story:"Luzes piscam numa cidade fantasma. Mostre como o campo, a cidade e o mundo se ligam na globalização.",
+ wall:"#2e2a22",floor:"#1f1c15",obj:["🏙️","🚦","🏚️","🚌"],
+ hint:"Milton Santos: fábula é o mundo como contam, perversidade é o mundo como ele é (com desigualdade) e a outra globalização é a possível, mais justa.",
+ bank:[S("A urbanização é o crescimento:",["Da população e das áreas urbanas","Das áreas rurais","Das florestas"],"Da população e das áreas urbanas"),
+  S("Milton Santos falou de 3 globalizações: fábula, perversidade e uma outra globalização. Qual mostra o mundo real, com desigualdade e pobreza?",["Globalização como perversidade","Globalização como fábula","Uma outra globalização"],"Globalização como perversidade",1),
+  S("Para Milton Santos, a globalização como fábula é a ideia de:",["Uma aldeia global onde todos ganham igualmente","Um mundo só de guerras","Um mundo sem tecnologia"],"Uma aldeia global onde todos ganham igualmente"),
+  S("O que atraiu muita gente do campo para a cidade?",["Empregos nas fábricas","Mais florestas","Menos escolas"],"Empregos nas fábricas"),
+  S("Cidades que crescem sem planejamento podem ter:",["Trânsito, favelas e poluição","Mais silêncio","Menos pessoas"],"Trânsito, favelas e poluição"),
+  S("Para Milton Santos, uma outra globalização seria:",["Mais justa e humana, pensando em todas as pessoas","Ainda mais desigual","Feita só para as empresas"],"Mais justa e humana, pensando em todas as pessoas"),
+  S("A relação entre campo e cidade é de:",["Troca e dependência","Separação total","Nenhuma ligação"],"Troca e dependência"),
+  S("Grandes cidades ligadas à economia mundial, com bancos e sedes de empresas, são chamadas de:",["Cidades globais","Cidades-dormitório","Vilas rurais"],"Cidades globais")]},
+{name:"A Cripta",story:"A saída está atrás de uma porta de pedra. Resolva cinco perguntas, uma de cada sala, e use suas letras secretas para abrir o cadeado.",
  wall:"#222228",floor:"#141417",obj:["⚰️","🪦","💀","🦴","🕸️"],
- hint:"Review all the topics. For the lock, put your 5 secret letters in the right order.",bank:null}
+ hint:"Revise os assuntos de cada sala. Para o cadeado, coloque as 5 letras secretas na ordem certa.",bank:null}
 ];
 var room=0,left=TOTAL,hints=0,playing=false,paused=false,Q=[],found=[],LET=[],CODE="",CLUE="",muted=false,AC=null;
 function sfx(t){if(muted)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();var n=AC.currentTime;
@@ -242,8 +243,8 @@ function sfx(t){if(muted)return;try{AC=AC||new (window.AudioContext||window.webk
   if(t==="bad")tone(160,.25,"sawtooth",0,.08,100);
   if(t==="door"){tone(70,1,"sawtooth",0,.07,150);tone(73,1,"square",.03,.025,160)}
   if(t==="win")[523,659,784,1047].forEach(function(f,i){tone(f,.25,"triangle",i*.14,.12)})}catch(e){}}
-function speak(x){if(!window.speechSynthesis)return;var u=new SpeechSynthesisUtterance(x.replace(/___/g,"blank"));u.lang="en-US";u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}
-function tiles(){var f=document.getElementById("codebar");f.hidden=false;f.textContent="";f.appendChild(el("small","","Secret letters"));
+function speak(x){if(!window.speechSynthesis)return;var u=new SpeechSynthesisUtterance(x.replace(/___/g,"blank"));u.lang="pt-BR";u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u)}
+function tiles(){var f=document.getElementById("codebar");f.hidden=false;f.textContent="";f.appendChild(el("small","","Letras secretas"));
   for(var i=0;i<5;i++)f.appendChild(el("span","tile"+(found[i]?" on":""),found[i]||"?"))}
 var stage=document.getElementById("stage"),hud=document.getElementById("hud"),candle=document.getElementById("candle");
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e}
@@ -261,81 +262,81 @@ function clockSvg(h,m){var a=[(h%12)*30+m/2,m*6],s='<svg class="clock" viewBox="
   for(var i=0;i<12;i++){var r=i*Math.PI/6;s+='<line x1="'+(50+38*Math.sin(r))+'" y1="'+(50-38*Math.cos(r))+'" x2="'+(50+43*Math.sin(r))+'" y2="'+(50-43*Math.cos(r))+'" stroke="#2a1736" stroke-width="2"/>'}
   [[a[0],24,4],[a[1],36,2.5]].forEach(function(p){var r=p[0]*Math.PI/180;s+='<line x1="50" y1="50" x2="'+(50+p[1]*Math.sin(r))+'" y2="'+(50-p[1]*Math.cos(r))+'" stroke="#2a1736" stroke-width="'+p[2]+'" stroke-linecap="round"/>'});
   return s+'<circle cx="50" cy="50" r="3" fill="#b3361f"/></svg>'}
-var STORY=[["Halloween night","You and your classmates join a famous escape room: the Haunted House of Mr. Boo. “It’s only a game,” says the guide with a smile."],
-["The lights go out","Suddenly the door slams shut. A cold voice says: “Welcome. Only the best English team can leave this place.”"],
-["Your mission","You are trapped. Find 5 secret letters, solve 6 rooms and open the last door in 15 minutes. Work together, speak English and good luck!"]];
+var STORY=[["Noite de Halloween","Você e seus colegas entram em um escape room famoso: a Casa Assombrada do Sr. Boo. “É só um jogo”, diz o guia com um sorriso."],
+["As luzes se apagam","De repente, a porta bate. Uma voz fria diz: “Bem-vindos. Só a melhor equipe de Geografia consegue sair daqui.”"],
+["Sua missão","Vocês estão presos. Encontrem 5 letras secretas, resolvam 6 salas e abram a última porta em 15 minutos. Trabalhem juntos e boa sorte!"]];
 function intro(beat){beat=beat||0;document.querySelector(".hero").hidden=false;document.getElementById("codebar").hidden=true;playing=false;room=0;hud.hidden=true;candle.hidden=true;lights();stage.textContent="";enter();
   var S=STORY[beat],last=beat===STORY.length-1;
   stage.appendChild(el("h2","",S[0]));stage.appendChild(el("p","story narr",S[1]));
-  var row=el("div","row"),b=el("button","",last?"Start the game":"Continue");
+  var row=el("div","row"),b=el("button","",last?"Começar o jogo":"Continuar");
   b.onclick=function(){last?start():intro(beat+1)};row.appendChild(b);
-  if(last){var m=el("button","ghostbtn","How to play");m.onclick=function(){openD("manual")};row.appendChild(m)}
+  if(last){var m=el("button","ghostbtn","Como jogar");m.onclick=function(){openD("manual")};row.appendChild(m)}
   stage.appendChild(row)}
 function start(){var w=WORDS[Math.floor(Math.random()*WORDS.length)];CODE=w[0];CLUE=w[1];
   do{LET=shuf(CODE.split(""))}while(LET.join("")===CODE);
-  Q=[];for(var i=0;i<5;i++)Q[i]=shuf(ROOMS[i].bank).slice(0,4);
+  Q=[];for(var i=0;i<5;i++){var b=shuf(ROOMS[i].bank).slice(0,4),mm=ROOMS[i].bank.filter(function(x){return x.must})[0];if(mm&&b.indexOf(mm)<0)b[0]=mm;Q[i]=b}
   Q[5]=[0,1,2,3,4].map(function(i){var r=ROOMS[i].bank.filter(function(x){return Q[i].indexOf(x)<0});return r[Math.floor(Math.random()*r.length)]});
   found=[];room=0;left=TOTAL;hints=0;playing=true;hud.hidden=false;candle.hidden=false;paint();show()}
 function show(){keys(room>0);paint();lights();tiles();stage.textContent="";enter();
   document.querySelector(".hero").hidden=room<ROOMS.length;
   if(room>=ROOMS.length){playing=false;return win()}
   var R=ROOMS[room],qs=Q[room],done=[],last=room===ROOMS.length-1;
-  stage.appendChild(el("p","badge","Room "+(room+1)+" of "+ROOMS.length));
+  stage.appendChild(el("p","badge","Sala "+(room+1)+" de "+ROOMS.length));
   stage.appendChild(el("h2","",R.name));stage.appendChild(el("p","story",R.story));
   var sc=el("div","scene");sc.style.setProperty("--wall",R.wall);sc.style.setProperty("--floor",R.floor);
   sc.innerHTML='<div class="doorway"><div class="door"></div></div>';
   var objs=qs.map(function(q,i){var b=el("button","obj",R.obj[i]);b.style.left=(10+i*58/(qs.length-1))+"%";b.style.animationDelay=(i*.6)+"s";
-    b.setAttribute("aria-label","Object "+(i+1)+" of "+qs.length);b.onclick=function(){pick(i)};sc.appendChild(b);return b});
-  var qa=el("div","qa"),row=el("div","row"),msg=el("p","msg"),hp=el("p","hint"),hb=el("button","ghostbtn","Get a hint");
-  msg.setAttribute("aria-live","polite");msg.textContent="Click an object to find a question.";
-  hb.onclick=function(){hints++;hp.textContent="Hint: "+R.hint};row.appendChild(hb);
+    b.setAttribute("aria-label","Objeto "+(i+1)+" de "+qs.length);b.onclick=function(){pick(i)};sc.appendChild(b);return b});
+  var qa=el("div","qa"),row=el("div","row"),msg=el("p","msg"),hp=el("p","hint"),hb=el("button","ghostbtn","Pedir dica");
+  msg.setAttribute("aria-live","polite");msg.textContent="Clique em um objeto para achar uma pergunta.";
+  hb.onclick=function(){hints++;hp.textContent="Dica: "+R.hint};row.appendChild(hb);
   [sc,qa,row,msg,hp].forEach(function(x){stage.appendChild(x)});
   function doorOpen(letter){sc.classList.add("open");sfx("door");
-    if(letter){found[room]=LET[room];tiles();msg.textContent="Click! The door creaks open. Secret letter: "+LET[room]}
-    var nx=el("button","",last?"Escape!":"Next room");nx.onclick=function(){room++;show()};row.appendChild(nx);nx.focus()}
+    if(letter){found[room]=LET[room];tiles();msg.textContent="Clique! A porta range e se abre. Letra secreta: "+LET[room]}
+    var nx=el("button","",last?"Fugir!":"Próxima sala");nx.onclick=function(){room++;show()};row.appendChild(nx);nx.focus()}
   function all(){if(!last)return doorOpen(true);
-    qa.textContent="";msg.textContent="The stone door has a 5-letter lock. Put your secret letters in order. Clue: "+CLUE;
-    var d=el("div","item"),cf=el("input"),cb=el("button","","Open the door");cf.maxLength=5;cf.autocomplete="off";cf.setAttribute("aria-label","Secret word");
-    function cc(){if(norm(cf.value)===CODE.toLowerCase()){qa.textContent="";doorOpen(false);msg.textContent="The stone door opens. You are free!"}
-      else{cf.classList.add("bad");cf.classList.remove("shake");void cf.offsetWidth;cf.classList.add("shake");sfx("bad");msg.textContent="Wrong word. Rearrange the letters and try again."}}
+    qa.textContent="";msg.textContent="A porta de pedra tem um cadeado de 5 letras. Coloque suas letras secretas na ordem certa. Pista: "+CLUE;
+    var d=el("div","item"),cf=el("input"),cb=el("button","","Abrir a porta");cf.maxLength=5;cf.autocomplete="off";cf.setAttribute("aria-label","Palavra secreta");
+    function cc(){if(norm(cf.value)===CODE.toLowerCase()){qa.textContent="";doorOpen(false);msg.textContent="A porta de pedra se abre. Vocês estão livres!"}
+      else{cf.classList.add("bad");cf.classList.remove("shake");void cf.offsetWidth;cf.classList.add("shake");sfx("bad");msg.textContent="Palavra errada. Reorganize as letras e tente de novo."}}
     cb.onclick=cc;cf.onkeydown=function(e){if(e.key==="Enter")cc()};d.appendChild(cf);qa.appendChild(d);qa.appendChild(cb);cf.focus()}
   function pick(i){objs.forEach(function(b,k){b.classList.toggle("sel",k===i)});sfx("tick");qa.textContent="";
     var it=qs[i],f;
-    if(done[i]){msg.textContent="Already solved. Pick another object.";return}
+    if(done[i]){msg.textContent="Já resolvido. Escolha outro objeto.";return}
     var d=el("div","item"),head=el("div","qhead"),lab=el("label","",it.q);lab.htmlFor="qf";
     if(it.c){var w=el("div");w.innerHTML=clockSvg(it.c[0],it.c[1]);d.appendChild(w.firstChild)}
     head.appendChild(lab);
-    if(window.speechSynthesis){var sp=el("button","ghostbtn spk","🔊");sp.setAttribute("aria-label","Listen to the question");sp.onclick=function(){speak(it.q)};head.appendChild(sp)}
+    if(window.speechSynthesis){var sp=el("button","ghostbtn spk","🔊");sp.setAttribute("aria-label","Ouvir a pergunta");sp.onclick=function(){speak(it.q)};head.appendChild(sp)}
     d.appendChild(head);
-    if(it.o){f=el("select");f.appendChild(new Option("Choose…",""));shuf(it.o).forEach(function(o){f.appendChild(new Option(o,o))})}
+    if(it.o){f=el("select");f.appendChild(new Option("Escolha…",""));shuf(it.o).forEach(function(o){f.appendChild(new Option(o,o))})}
     else{f=el("input");f.type="text";f.autocomplete="off";f.autocapitalize="off";f.spellcheck=false}
     f.id="qf";d.appendChild(f);qa.appendChild(d);
-    var ck=el("button","","Check");qa.appendChild(ck);
+    var ck=el("button","","Verificar");qa.appendChild(ck);
     function check(){var acc=[].concat(it.a).map(function(x){return it.o?x:norm(x)}),ok=acc.indexOf(it.o?f.value:norm(f.value))>-1;
       f.classList.toggle("ok",ok);f.classList.toggle("bad",!ok);
-      if(!ok){f.classList.remove("shake");void f.offsetWidth;f.classList.add("shake");sfx("bad");msg.textContent="Not yet. Try again!";return}
+      if(!ok){f.classList.remove("shake");void f.offsetWidth;f.classList.add("shake");sfx("bad");msg.textContent="Ainda não. Tente de novo!";return}
       sfx("ok");done[i]=true;objs[i].classList.add("done");objs[i].classList.remove("sel");qa.textContent="";
       var n=done.filter(Boolean).length;
-      if(n<qs.length){msg.textContent="Correct! "+n+" of "+qs.length+" solved. Pick another object.";return}
+      if(n<qs.length){msg.textContent="Certo! "+n+" de "+qs.length+" resolvidas. Escolha outro objeto.";return}
       all()}
     ck.onclick=check;f.onkeydown=function(e){if(e.key==="Enter")check()};f.focus()}
 }
 function win(){sfx("win");keys(true);lights();document.getElementById("time").textContent="";
-  var d=el("div","end");d.appendChild(el("h2","","You escaped!"));
-  d.appendChild(el("p","","Time used: "+fmt(TOTAL-left)+". Hints used: "+hints+"."));
-  var b=el("button","","Play again");b.onclick=start;d.appendChild(b);stage.appendChild(d);
+  var d=el("div","end");d.appendChild(el("h2","","Vocês escaparam!"));
+  d.appendChild(el("p","","Tempo usado: "+fmt(TOTAL-left)+". Dicas usadas: "+hints+"."));
+  var b=el("button","","Jogar de novo");b.onclick=start;d.appendChild(b);stage.appendChild(d);
   for(var i=0;i<16;i++){var c=el("span","conf","🎃");c.style.left=(Math.random()*92)+"%";c.style.animationDelay=(Math.random()*1.2)+"s";stage.appendChild(c)}}
 function lose(){document.querySelector(".hero").hidden=false;stage.textContent="";enter();lights();var d=el("div","end");
-  d.appendChild(el("h2","","The candle went out."));
-  d.appendChild(el("p","","You stayed in the dark… this time. You cleared "+room+" of "+ROOMS.length+" rooms."));
-  var b=el("button","","Try again");b.onclick=start;d.appendChild(b);stage.appendChild(d)}
+  d.appendChild(el("h2","","A vela se apagou."));
+  d.appendChild(el("p","","Vocês ficaram no escuro… desta vez. Vocês concluíram "+room+" de "+ROOMS.length+" salas."));
+  var b=el("button","","Tentar de novo");b.onclick=start;d.appendChild(b);stage.appendChild(d)}
 function openD(id){paused=true;document.getElementById(id).showModal()}
 ["manual","credits"].forEach(function(id){var d=document.getElementById(id);
   d.addEventListener("close",function(){paused=false});
   d.querySelector("[data-close]").onclick=function(){d.close()}});
 document.getElementById("bMan").onclick=function(){openD("manual")};
 document.getElementById("bCred").onclick=function(){openD("credits")};
-var bs=document.getElementById("bSnd");bs.onclick=function(){muted=!muted;bs.textContent="Sound: "+(muted?"off":"on")};
+var bs=document.getElementById("bSnd");bs.onclick=function(){muted=!muted;bs.textContent="Som: "+(muted?"desligado":"ligado")};
 setInterval(tick,1000);intro();
 </script>
 </body>
